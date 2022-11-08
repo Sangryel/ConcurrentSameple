@@ -29,6 +29,7 @@ class ShopifyPromiseTest : TestDelegate {
                     for (i in 1..1_000_000_000) {
                         out += i
                         if (i % 100_000_000 == 0) {
+                            Thread.sleep(100L)
                             Log.v(TAG, " - process : $i")
                         }
                     }

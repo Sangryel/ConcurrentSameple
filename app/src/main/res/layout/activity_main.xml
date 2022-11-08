@@ -23,24 +23,33 @@
         android:id="@+id/btn_promise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="promise" />
+        android:layout_marginTop="40dp"
+        android:text="Shopify promise" />
 
     <Button
         android:id="@+id/btn_promise_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="promise cancel" />
+        android:text="Shopify promise cancel" />
 
     <Button
         android:id="@+id/btn_coroutine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="coroutine" />
+
+    <Button
+        android:id="@+id/btn_coroutine_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="coroutine cancel" />
 
     <Button
         android:id="@+id/btn_butler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="butler" />
 
     <Button

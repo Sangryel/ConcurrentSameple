@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
             testMap["Coroutine"]?.run()
         }
 
+        findViewById<Button>(R.id.btn_coroutine_cancel).setOnClickListener {
+            testMap["Coroutine"]?.cancel()
+        }
+
         findViewById<Button>(R.id.btn_butler).setOnClickListener {
             testMap["Butler"]?.run()
         }

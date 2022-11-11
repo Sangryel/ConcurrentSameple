@@ -32,7 +32,7 @@ class CoroutineTest : TestDelegate {
             out += i
 
             if (i % 100_000_000 == 0) {
-//                yield()
+                yield()
                 trackEvent(i)
             }
         }

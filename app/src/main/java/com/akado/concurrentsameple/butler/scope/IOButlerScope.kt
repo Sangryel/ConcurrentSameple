@@ -1,23 +1,18 @@
 package com.akado.concurrentsameple.butler.scope
 
+import android.os.Looper
 import com.akado.concurrentsameple.butler.Scope
+import com.akado.concurrentsameple.butler.dispatcher.DispatcherLoader
 import java.util.concurrent.ScheduledExecutorService
 
-class IOButlerScope<T>(
-    private val dispatcher: ScheduledExecutorService,
+internal class IOButlerScope<T>(
     private val block: () -> T
 ) : Scope<T> {
 
-//    private var future: Future<Unit>? = null
-//
-//    override fun start() {
-//        Thread.sleep(10L)
-//        future = dispatcher.submit<Unit> { block.invoke() }
-//        dispatcher.execute { future?.get() }
-//    }
-
-    override fun get(): T {
-        TODO("Not yet implemented")
-    }
-
+    override fun get(): T =
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            DispatcherLoader.ioDispatcher.submit<T> { block.invoke() }.get()
+        } else {
+            block.invoke()
+        }
 }

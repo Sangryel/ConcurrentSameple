@@ -1,12 +1,12 @@
 package com.akado.concurrentsameple.butler
 
 import com.akado.concurrentsameple.butler.job.buildJob
+import com.akado.concurrentsameple.butler.scope.IOButlerScope
 
 object Butler {
 
     fun launch(
-        dispatcher: Dispatchers,
-        block: () -> Unit
+        dispatcher: Dispatchers, block: () -> Unit
     ): Job {
         val job = buildJob(dispatcher, block)
         job.start()
@@ -14,12 +14,13 @@ object Butler {
     }
 }
 
-//fun <T> withContext(
-//    dispatcher: Dispatchers,
-//    block: () -> T
-//) : T
-//
-//}
+fun yield(): Unit = withContext {
+    if (Thread.interrupted()) {
+        throw InterruptedException()
+    }
+}
 
-fun yield() = Butler.launch(Dispatchers.IO) { }
+fun <T> withContext(
+    block: () -> T
+): T = IOButlerScope(block).get()
 

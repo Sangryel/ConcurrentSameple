@@ -31,10 +31,10 @@ class CoroutineTest : TestDelegate {
         for (i in 1..1_000_000_000) {
             out += i
 
-            if (i % 100_000_000 == 0) {
+//            if (i % 100_000_000 == 0) {
                 yield()
-                trackEvent(i)
-            }
+//                trackEvent(i)
+//            }
         }
         Log.v(TAG, "coroutine duration: ${(System.currentTimeMillis() - start)}")
     }
